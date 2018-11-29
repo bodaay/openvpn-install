@@ -678,6 +678,14 @@ user nobody
 group $NOGROUP
 persist-key
 persist-tun
+# I've added these extras, read: https://winaero.com/blog/speed-up-openvpn-and-get-faster-speed-over-its-channel/
+sndbuf 393216
+rcvbuf 393216
+push “sndbuf 393216”
+push “rcvbuf 393216”
+tun-mtu 1400
+mssfix 1360
+# end of my addition added these extras
 keepalive 10 120
 topology subnet
 server 10.8.0.0 255.255.255.0
