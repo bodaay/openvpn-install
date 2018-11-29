@@ -678,11 +678,11 @@ user nobody
 group $NOGROUP
 persist-key
 persist-tun
-# I've added these extras, read: https://winaero.com/blog/speed-up-openvpn-and-get-faster-speed-over-its-channel/
+# Khalefa: I've added these extras, read: https://winaero.com/blog/speed-up-openvpn-and-get-faster-speed-over-its-channel/
 sndbuf 393216
 rcvbuf 393216
-push “sndbuf 393216”
-push “rcvbuf 393216”
+push "sndbuf 393216"
+push "rcvbuf 393216"
 tun-mtu 1400
 mssfix 1360
 # end of my addition added these extras
@@ -840,7 +840,9 @@ verb 3" >> /etc/openvpn/server.conf
 		sed -i 's|LimitNPROC|#LimitNPROC|' /etc/systemd/system/openvpn\@.service
 		# Another workaround to keep using /etc/openvpn/
 		sed -i 's|/etc/openvpn/server|/etc/openvpn|' /etc/systemd/system/openvpn\@.service
-		
+		# Khalefa: I'm adding set capability to openvpn installation, so we can listen to port less than 1024
+		setcap 'cap_net_bind_service=+ep' /usr/sbin/openvpn
+		# end of my adding
 		systemctl daemon-reload
 		systemctl restart openvpn@server
 		systemctl enable openvpn@server
