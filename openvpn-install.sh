@@ -679,6 +679,7 @@ group $NOGROUP
 persist-key
 persist-tun
 # Khalefa: I've added these extras, read: https://winaero.com/blog/speed-up-openvpn-and-get-faster-speed-over-its-channel/
+duplicate-cn # This option will allow me to use same certificate on multiple devices
 sndbuf 393216
 rcvbuf 393216
 push \"sndbuf 393216\"
